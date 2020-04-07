@@ -46,6 +46,7 @@ export const P = styled.p`
 export const SelectDiv = styled.div`
   display: flex;
   justify-content: space-around;
+  align-items: center;
   width: 70%;
   margin: auto;
 
