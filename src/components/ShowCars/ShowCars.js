@@ -10,9 +10,10 @@ import {
   Brand,
   Year,
   Color,
+  EmailBio,
 } from "./style";
 import { Context } from "../../Context/ContextProvider";
-import ShowFilteredCars from "../ShowFilteredCars/ShowFilteredCars";
+import FilterCars from "../FilterCars/FilterCars";
 const pic = "../../../Annotation.png";
 
 const ShowCars = () => {
@@ -30,7 +31,7 @@ const ShowCars = () => {
   return (
     <Container>
       {filter ? (
-        <ShowFilteredCars cars={filter} page={page} filterCars={filterCars} />
+        <FilterCars cars={filter} page={page} filterCars={filterCars} />
       ) : (
         cars !== null &&
         cars.map((car) => {

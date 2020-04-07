@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
@@ -82,7 +82,7 @@ export const Color = styled.div`
 
 export const EmailBio = styled.div``;
 
-const H2 = styled.h2`
+export const H2 = styled.h2`
   display: grid;
   grid-template-columns: 30% 70%;
 `;
