@@ -19,7 +19,6 @@ const ShowCars = () => {
 
   return (
     <Container>
-      {/* <button onClick={() => postData()}>Upload</button> */}
       {filter ? (
         <ShowFilteredCars cars={filter} page={page} filterCars={filterCars} />
       ) : (
