@@ -3,15 +3,17 @@ import "./App.css";
 import styled from "styled-components";
 import { ContextProvider } from "./Context/ContextProvider";
 import FilterCars from "./components/FilterCars/FilterCars";
+import ShowCars from "./components/ShowCars/ShowCars";
+import ShowFilteredCars from "./components/ShowFilteredCars/ShowFilteredCars";
 
 function App() {
   return (
     <ContextProvider>
-      {/* <Container>
-        <DisplayComponent />
-      </Container> */}
+      <ShowFilteredCars />
       <FilterCars />
-      <Div>{/* <ShowCarDetail /> */}</Div>
+      <Div>
+        <ShowCars />
+      </Div>
     </ContextProvider>
   );
 }

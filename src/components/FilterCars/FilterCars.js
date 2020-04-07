@@ -10,7 +10,7 @@ const Filtered = ({ cars }) => {
   return (
     <Div>
       <h1>Filtered Cars Owners</h1>
-      {cars === null ? (
+      {cars === undefined ? (
         <div className='found'>Filtered Not Found</div>
       ) : (
         cars !== null &&

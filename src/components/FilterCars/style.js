@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Div = styled.div`
   width: 100%;
-  background: #fafafa;
-  padding: 0.6em;
 `;
 
 export const Car = styled.div`

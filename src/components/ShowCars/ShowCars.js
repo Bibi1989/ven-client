@@ -10,6 +10,7 @@ import {
   Brand,
   Year,
   Color,
+  EmailBio,
 } from "./style";
 import { Context } from "../../Context/ContextProvider";
 import ShowFilteredCars from "../ShowFilteredCars/ShowFilteredCars";
