@@ -9,21 +9,25 @@ import ShowFilteredCars from "./components/ShowFilteredCars/ShowFilteredCars";
 function App() {
   return (
     <ContextProvider>
-      <ShowFilteredCars />
-      <FilterCars />
-      <Div>
-        <ShowCars />
-      </Div>
+      <Container>
+        <h1>Cars Owners</h1>
+        <ShowFilteredCars />
+        {/* <FilterCars /> */}
+        <Div>
+          <ShowCars />
+        </Div>
+      </Container>
     </ContextProvider>
   );
 }
 
 export const Container = styled.div`
-  display: grid;
-  grid-template-columns: 20% 80%;
-  max-width: 105em;
-  padding-top: 5%;
-  margin: auto;
+  width: 100%;
+  padding: 2% 0;
+  h1 {
+    text-align: center;
+    padding: 2% 0;
+  }
 `;
 
 const Div = styled.div`
