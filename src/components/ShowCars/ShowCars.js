@@ -1,8 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
-import styled from "styled-components";
 import { Pagination } from "semantic-ui-react";
+import {
+  Container,
+  Car,
+  Image,
+  Detail,
+  H2,
+  BrandYearColor,
+  Brand,
+  Year,
+  Color,
+  EmailBio,
+} from "./style";
 import { Context } from "../../Context/ContextProvider";
-import ShowFilteredCars from "../ShowFilteredCars/ShowFilteredCars";
+import FilterCars from "../FilterCars/FilterCars";
 const pic = "../../../Annotation.png";
 
 const ShowCars = () => {
@@ -19,9 +30,8 @@ const ShowCars = () => {
 
   return (
     <Container>
-      {/* <button onClick={() => postData()}>Upload</button> */}
       {filter ? (
-        <ShowFilteredCars cars={filter} page={page} filterCars={filterCars} />
+        <FilterCars cars={filter} page={page} filterCars={filterCars} />
       ) : (
         cars !== null &&
         cars.map((car) => {
@@ -99,92 +109,5 @@ const ShowCars = () => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  width: 100%;
-  background: #fafafa;
-  padding: 0.6em;
-`;
-
-const Car = styled.div`
-  display: grid;
-  grid-template-columns: 30% 70%;
-  padding: 2% 0;
-  margin: 1.4em;
-  border-radius: 15px;
-  box-shadow: 0 0 6px #777;
-`;
-const Image = styled.div`
-  padding: 1.4em;
-`;
-
-const Detail = styled.div``;
-
-const BrandYearColor = styled.div`
-  display: flex;
-  padding: 1em 0;
-
-  .divide1 {
-    height: 55px;
-    width: 0.15em;
-    background: #252525;
-    margin: 5px 1em;
-  }
-  .divide2 {
-    height: 55px;
-    width: 0.2em;
-    background: #252525;
-    margin: 5px 1em;
-  }
-`;
-
-const Brand = styled.div`
-  font-size: 1.1em;
-  padding-right: ${(props) => (props.paddingRight ? props.paddingRight : "")};
-  p {
-    &:first-child {
-      color: #767676;
-      font-weight: 500;
-    }
-  }
-`;
-
-const Year = styled.div`
-  font-size: 1.2em;
-  padding-right: ${(props) => (props.paddingRight ? props.paddingRight : "")};
-  p {
-    &:first-child {
-      color: #767676;
-      font-weight: 500;
-    }
-  }
-`;
-
-const Color = styled.div`
-  text-align: center;
-  p {
-    font-size: 1.2em;
-
-    &:first-child {
-      color: #767676;
-      font-weight: 500;
-    }
-
-    &:last-child {
-      width: 1.2em;
-      height: 1.2em;
-      background: ${(props) => (props.color ? props.color : "")};
-      border-radius: 50%;
-      margin: auto;
-    }
-  }
-`;
-
-const EmailBio = styled.div``;
-
-const H2 = styled.h2`
-  display: grid;
-  grid-template-columns: 30% 70%;
-`;
 
 export default ShowCars;
