@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 // import { Table, Pagination, Form, Button, Input } from "semantic-ui-react";
 import {
   Div,
@@ -13,21 +13,27 @@ import {
   EmailBio,
 } from "./style";
 import { Context } from "../../Context/ContextProvider";
+import { Button } from "semantic-ui-react";
+import ShowFilteredCars from "../ShowFilteredCars/ShowFilteredCars";
 const pic = "../../../Annotation.png";
 
-const Filtered = ({ cars }) => {
-  const { loading } = useContext(Context);
+const Filtered = () => {
+  const { loading, filter, getPage } = useContext(Context);
+  const [page, setPage] = useState(1);
+  useEffect(() => {
+    getPage(page);
+  }, [page]);
   if (loading) return <div style={{ textAlign: "center" }}>Loading</div>;
   return (
     <Div>
       <h1>Filtered Cars Owners</h1>
-      {cars === undefined ? (
+      {filter === undefined ? (
         <div className='found'>Filtered Not Found</div>
       ) : (
-        cars !== null &&
-        cars.map((car) => {
+        filter !== null &&
+        filter.map((car) => {
           return (
-            <Car>
+            <Car key={car.id}>
               <Image>
                 <img src={pic} alt='car picture' width='100%' height='100%' />
               </Image>
@@ -86,6 +92,7 @@ const Filtered = ({ cars }) => {
           );
         })
       )}
+      <Button onClick={() => setPage((c) => c + 1)}>Load More</Button>
     </Div>
   );
 };

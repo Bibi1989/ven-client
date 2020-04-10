@@ -46,13 +46,17 @@ const initialState = {
 export const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
 
-  const fetchCars = async (p) => {
+  const uri = `http://localhost:5500/api/cars`;
+  //   const uri = `https://ven-task-api.herokuapp.com/api/cars`;
+
+  const fetchCars = async (l) => {
+    setPage(l);
+    console.log({ lim: l });
     try {
       setLoading(true);
-      const response = await axios.get(
-        `https://ven-task-api.herokuapp.com/api/cars?page=${p}`
-      );
+      const response = await axios.get(`${uri}`);
       setLoading(false);
       dispatch({ type: FETCH, payload: response.data.cars });
     } catch (error) {
@@ -60,9 +64,12 @@ export const ContextProvider = ({ children }) => {
       dispatch({ type: ERROR, payload: error.response });
     }
   };
+  useEffect(() => {
+    fetchCars();
+  }, []);
 
   const filterCars = async (data, p) => {
-    console.log(data);
+    console.log(p);
     const query = {
       start_year: data !== undefined && parseInt(data.start),
       end_year: data !== undefined && parseInt(data.end),
@@ -72,21 +79,20 @@ export const ContextProvider = ({ children }) => {
     };
     try {
       setLoading(true);
-      const response = await axios.post(
-        `https://ven-task-api.herokuapp.com/api/cars/query`,
-        query,
-        {
-          headers: {
-            "Content-type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post(`${uri}/query`, query, {
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
       setLoading(false);
       dispatch({ type: FILTER, payload: response.data.car });
     } catch (error) {
       setLoading(false);
       dispatch({ type: ERROR, payload: error.response });
     }
+  };
+  const getPage = (p) => {
+    return p;
   };
   const fil = async (filled) => {
     dispatch({ type: FILL, payload: filled });
@@ -103,6 +109,7 @@ export const ContextProvider = ({ children }) => {
         fetchCars,
         filterCars,
         fil,
+        getPage,
       }}
     >
       {children}

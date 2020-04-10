@@ -7,23 +7,31 @@ import { countries, colors, years } from "../../utils/country_color";
 const ShowFilteredCars = () => {
   const { filterCars, fil, fill } = useContext(Context);
   const [filter, setFilter] = useState({
-    start: "1909",
-    end: "1909",
+    start: "1990",
+    end: "2010",
     gender: "Male",
   });
   const [count, setCount] = useState([]);
   const [col, setCol] = useState([]);
+  const [counter, setCounter] = useState(1);
+  const [page, setPage] = useState(1);
 
   const data = {
     ...filter,
     count,
     col,
   };
-  console.log(fill);
   const handleFilter = () => {
-    filterCars(data);
+    setCounter((c) => c + 1);
+    filterCars(data, page);
     fil([data]);
   };
+//   window.onscroll = () => {
+//     console.log(window.scrollY);
+//     if (window.scrollY === 2500) {
+//       setPage((c) => c + 1);
+//     }
+//   };
   return (
     <Container>
       <SelectDiv>
